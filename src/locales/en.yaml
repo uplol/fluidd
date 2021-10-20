@@ -241,6 +241,7 @@ app:
       velocity: Velocity
       visible: Visible
       z_offset: Z Offset
+      unsaved_changes: Unsaved Changes
     msg:
       password_changed: Password changed
       wrong_password: Oops, something went wrong. Is your password correct?
@@ -258,6 +259,7 @@ app:
         confirm: Are you sure?
         confirm_reboot_host: Are you sure? This will reboot your host system.
         confirm_shutdown_host: Are you sure? This will shutdown your host system.
+        unsaved_changes: You have unsaved changes. Are you sure you want to close this file?
     table:
       header:
         actions: Actions

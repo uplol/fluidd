@@ -182,6 +182,7 @@ app:
       variance: Abweichung
       velocity: Geschwindigkeit
       z_offset: Z-Offset
+      unsaved_changes: Ungespeicherte Änderungen
     simple_form:
       error:
         invalid_url: Ungültige URL
@@ -193,6 +194,7 @@ app:
         confirm: Sind Sie sicher?
         confirm_reboot_host: Sind Sie sicher? Das Host-System wird neu gestartet.
         confirm_shutdown_host: Sind Sie sicher? Das Host-System wird heruntergefahren.
+        unsaved_changes: Sie haben ungespeicherte Änderungen. Sind Sie sicher, dass Sie den Editor schließen möchten?
     table:
       header:
         actions: Aktionen

@@ -145,7 +145,18 @@ export default class FileEditorDialog extends Mixins(StateMixin) {
     this.updatedContent = this.contents
   }
 
-  emitClose () {
+  async emitClose () {
+    if (this.updatedContent !== this.contents) {
+      const result = await this.$confirm(
+        this.$tc('app.general.simple_form.msg.unsaved_changes'),
+        { title: this.$tc('app.general.label.unsaved_changes'), color: 'card-heading', icon: '$error' }
+      )
+
+      if (!result) {
+        return
+      }
+    }
+
     this.$emit('input', false)
   }
 
