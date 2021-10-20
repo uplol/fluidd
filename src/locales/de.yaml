@@ -27,6 +27,7 @@ app:
       item: Element
       power: Leistung
       target: Ziel
+      rate_of_change: Änderung
     tooltip:
       help: >-
         Halten Sie die Umschalttaste gedrückt, um zu zoomen. <br />Klicken Sie

@@ -6,6 +6,7 @@
           <th width="1%"></th>
           <th width="95%">{{ $t('app.chart.label.item') }}</th>
           <th width="1%">{{ $t('app.chart.label.power') }}</th>
+          <th width="1%">{{ $t('app.chart.label.rate_of_change') }}</th>
           <th width="1%">{{ $t('app.chart.label.current') }}</th>
           <th width="1%"></th>
           <th width="1%">
@@ -39,6 +40,14 @@
               <span v-if="item.target > 0">
                 {{ (item.power) ? (item.power * 100).toFixed() : 0}}<small>%</small>
               </span>
+            </span>
+          </td>
+          <td class="rate-of-change">
+            <span
+              @click="$emit('legendRateOfChangeClick', item)"
+              :class="{ 'active': chartSelectedLegends[item.name + 'Power'] }"
+              class="legend-item">
+              <span>{{ getRateOfChange(item) }}<small>&deg;C/s</small></span>
             </span>
           </td>
           <td class="temp-actual">
@@ -120,6 +129,14 @@
             </span>
           </td>
           <td class="temp-power">&nbsp;</td>
+          <td class="rate-of-change">
+            <span
+              @click="$emit('legendRateOfChangeClick', item)"
+              :class="{ 'active': chartSelectedLegends[item.name + 'Power'] }"
+              class="legend-item">
+              <span>{{ getRateOfChange(item) }}<small>&deg;C/s</small></span>
+            </span>
+          </td>
           <td class="temp-actual">
             <v-tooltip left>
               <template v-slot:activator="{ on, attrs }">
@@ -145,6 +162,7 @@ import { Component, Mixins } from 'vue-property-decorator'
 import TemperaturePresetsMenu from './TemperaturePresetsMenu.vue'
 import InputTemperature from './InputTemperature.vue'
 import StateMixin from '@/mixins/state'
+import { Heater, Sensor } from '@/store/printer/types'
 
 @Component({
   components: {
@@ -191,6 +209,17 @@ export default class TemperatureTargets extends Mixins(StateMixin) {
 
   setFanTargetTemp (fan: string, target: number) {
     this.sendGcode(`SET_TEMPERATURE_FAN_TARGET TEMPERATURE_FAN=${fan} TARGET=${target}`)
+  }
+
+  getRateOfChange (item: Heater | Sensor) {
+    const chartData = this.$store.getters['charts/getChartData']
+    if (chartData.length < 2) {
+      return '+0'
+    }
+
+    const [prev, curr] = chartData.slice(-2)
+    const rateOfChange = Math.round((curr[item.name] - prev[item.name]) / (curr.date - prev.date) * 1000 * 10) / 10
+    return `${rateOfChange < 0 ? '' : '+'}${rateOfChange.toFixed(1)}`
   }
 }
 </script>

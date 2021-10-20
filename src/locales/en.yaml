@@ -30,6 +30,7 @@ app:
       'on': Chart on
       power: Power
       target: Target
+      rate_of_change: Change
     tooltip:
       help: >-
         Hold shift to zoom.<br />Click an item to toggle in the graph.<br
