@@ -27,7 +27,7 @@ export const getThumb = (thumbnails: Thumbnail[], path: string, large = true) =>
         if (thumb.relative_path && thumb.relative_path.length > 0) {
           const url = new URL(apiUrl ?? document.location.origin)
           url.pathname = (path === '')
-            ? url.pathname = `/server/files/gcodes/${thumb.relative_path}`
+            ? `/server/files/gcodes/${thumb.relative_path}`
             : `/server/files/gcodes/${path}/${thumb.relative_path}`
 
           return {
