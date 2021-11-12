@@ -272,6 +272,7 @@ app:
       camera_flip_y: Vertikal spiegeln
       camera_stream_type: Art des Kamerastreams
       camera_url: Kamera-Url
+      confirm_dirty_editor_close: Schließen des Editors mit ungespeicherten Änderungen bestätigen
       dark_mode: Nachtmodus
       default_extrude_length: Standard Extrudierlänge
       default_extrude_speed: Standard Extrudiergeschwindigkeit

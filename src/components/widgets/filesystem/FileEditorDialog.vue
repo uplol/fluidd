@@ -148,7 +148,8 @@ export default class FileEditorDialog extends Mixins(StateMixin) {
   }
 
   async emitClose () {
-    if (this.updatedContent !== this.lastSavedContent) {
+    const confirmDirtyEditorClose = this.$store.state.config.uiSettings.general.confirmDirtyEditorClose
+    if (confirmDirtyEditorClose && this.updatedContent !== this.lastSavedContent) {
       const result = await this.$confirm(
         this.$tc('app.general.simple_form.msg.unsaved_changes'),
         { title: this.$tc('app.general.label.unsaved_changes'), color: 'card-heading', icon: '$error' }

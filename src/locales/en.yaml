@@ -345,6 +345,7 @@ app:
       camera_stream_type: Stream type
       camera_url: Camera Url
       confirm_on_estop: Require confirm on Emergency Stop
+      confirm_dirty_editor_close: Require confirm when closing the editor with unsaved changes
       dark_mode: Dark mode
       default_extrude_length: Default extrude length
       default_extrude_speed: Default extrude speed
