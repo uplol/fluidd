@@ -213,12 +213,12 @@ export default class TemperatureTargets extends Mixins(StateMixin) {
 
   getRateOfChange (item: Heater | Sensor) {
     const chartData = this.$store.getters['charts/getChartData']
-    if (chartData.length < 2) {
-      return '+0'
+    let rateOfChange = 0
+    if (chartData.length >= 2) {
+      const [prev, curr] = chartData.slice(-2)
+      rateOfChange = (curr[item.name] - prev[item.name]) / (curr.date - prev.date) * 1000
     }
 
-    const [prev, curr] = chartData.slice(-2)
-    const rateOfChange = Math.round((curr[item.name] - prev[item.name]) / (curr.date - prev.date) * 1000 * 10) / 10
     return `${rateOfChange < 0 ? '' : '+'}${rateOfChange.toFixed(1)}`
   }
 }
